@@ -4,6 +4,9 @@
 
 This project is a **serverless expense tracking system** that leverages AWS services to store, process, and back up expense records. Users can log expenses, generate reports, and ensure data persistence with automated backups.
 
+### Project Architecture
+!Updating.......
+
 ## **Architecture**
 
 The system is divided into multiple components, each handling a specific function. Below is an overview of the architecture:
@@ -63,6 +66,9 @@ project-folder/
     ]
 }
 
+### Frontend (S3 Hosted)
+![S3 Website](screenshots/webinterface.png)
+
 ### **2. Setting Up API Gateway**
 
 1. Navigate to **API Gateway** in the AWS Console.
@@ -100,6 +106,9 @@ project-folder/
    - Upload pymysql-layer.zip as a Lambda Layer in AWS.
    - Attach this layer only to the backupToRDS Lambda function (since it's the only one using RDS).
 
+### Lambda Functions
+![Lambda Functions](screenshots/lambdafunctions.png)
+
 ### **4. Configuring DynamoDB & RDS**
 
 1. Navigate to **AWS DynamoDB** and create a table named **Expenses** with:
@@ -107,6 +116,12 @@ project-folder/
 2. Navigate to **Amazon RDS** and create a MySQL database instance.
 3. Run the SQL script from `database/` to create the **expenses table**.
 4. Note down the RDS endpoint for Lambda integration.
+
+### DynamoDB Table
+![DynamoDB Table](screenshots/dynamodbtable.png)
+
+### RDS Database Query
+![RDS Query](screenshots/rdsbackedup.png)
 
 ### **5. Setting Up Expense Reports (Amazon S3 & Glacier Storage)**
 
@@ -120,6 +135,15 @@ project-folder/
 3. Ensure the bucket policy allows Lambda to upload reports.
 4. The **generateReport Lambda** will automatically upload reports to this bucket.
 
+### S3 Report
+![S3 Report File](screenshots/reportfiles3.png)
+
+### S3 Report Downloaded
+![S3 Report Downloaded Excel](screenshots/downloadedmonthlyreport.png)
+
+### EventBridge Rules
+![EventBridge Rules](screenshots/eventbridgerules.png)
+
 ### **6. Configuring Notifications (SNS)**
 
 1. Navigate to Amazon SNS and create a new topic for expense alerts.
@@ -132,6 +156,11 @@ project-folder/
 2. Create **CloudWatch Alarms** to monitor system health and trigger notifications if errors occur.
 
 ---
+
+### CloudWatch Logs
+![Backup CloudWatch](screenshots/cloudwatchlogforbackup.png)
+![Expenses CloudWatch](screenshots/cloudwatchlogforexpenses.png)
+![Report CloudWatch](screenshots/cloudwatchlogforreport.png)
 
 ## **How Everything Connects**
 
