@@ -51,16 +51,16 @@ project-folder/
 
 **Bucket Policy**
 {
-"Version": "2012-10-17",
-"Statement": [
-{
-"Sid": "PublicReadGetObject",
-"Effect": "Allow",
-"Principal": "*",
-"Action": "s3:GetObject",
-"Resource": "arn:aws:s3:::your-bucket-name/*"
-}
-]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+    ]
 }
 
 ### **2. Setting Up API Gateway**
@@ -89,16 +89,13 @@ project-folder/
    - Run the following commands in your terminal on your local computer
 
      # 1. Create a directory for the package
-
-     mkdir python
-
-     # 2. Install pymysql into this directory
-
-     pip install pymysql -t python/
-
-     # 3. Zip the directory (this will create python.zip)
-
-     zip -r pymysql-layer.zip python/
+      mkdir python
+      
+      # 2. Install pymysql into this directory
+      pip install pymysql -t python/
+      
+      # 3. Zip the directory (this will create python.zip)
+      zip -r pymysql-layer.zip python/
 
    - Upload pymysql-layer.zip as a Lambda Layer in AWS.
    - Attach this layer only to the backupToRDS Lambda function (since it's the only one using RDS).
